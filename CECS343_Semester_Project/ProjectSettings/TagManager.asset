@@ -41,6 +41,9 @@ TagManager:
   - name: Background
     uniqueID: 1349728575
     locked: 0
+  - name: Water
+    uniqueID: 3305600477
+    locked: 0
   - name: Ground
     uniqueID: 3745890175
     locked: 0
