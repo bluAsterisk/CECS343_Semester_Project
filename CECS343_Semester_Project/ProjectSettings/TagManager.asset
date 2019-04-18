@@ -41,11 +41,26 @@ TagManager:
   - name: Background
     uniqueID: 1349728575
     locked: 0
+  - name: Water Background 4
+    uniqueID: 3924197441
+    locked: 0
+  - name: Water Background 3
+    uniqueID: 3935257615
+    locked: 0
+  - name: Water Background 2
+    uniqueID: 1235761403
+    locked: 0
+  - name: Water Background 1
+    uniqueID: 3229698705
+    locked: 0
   - name: Water
     uniqueID: 3305600477
     locked: 0
   - name: Ground
     uniqueID: 3745890175
+    locked: 0
+  - name: Wall
+    uniqueID: 3775627203
     locked: 0
   - name: Decoration
     uniqueID: 3512446965
