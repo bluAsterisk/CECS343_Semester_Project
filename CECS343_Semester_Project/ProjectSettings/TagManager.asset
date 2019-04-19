@@ -62,8 +62,14 @@ TagManager:
   - name: Wall
     uniqueID: 3775627203
     locked: 0
-  - name: Decoration
+  - name: Decoration Back
     uniqueID: 3512446965
+    locked: 0
+  - name: Character
+    uniqueID: 3542306135
+    locked: 0
+  - name: Decoration Front
+    uniqueID: 3786851115
     locked: 0
   - name: Default
     uniqueID: 0
