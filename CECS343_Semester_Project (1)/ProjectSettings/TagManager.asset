@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - Collectable
+  - LowerPB
+  - LeftPB
+  - RightPB
+  - UpperPB
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - Enemy
+  - 
+  - 
+  - 
+  - Player
+  - 
+  - 
+  - Destructable
+  - CameraBounds
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - Platform
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 1349728575
+    locked: 0
+  - name: Water Background 4
+    uniqueID: 3924197441
+    locked: 0
+  - name: Water Background 3
+    uniqueID: 3935257615
+    locked: 0
+  - name: Water Background 2
+    uniqueID: 1235761403
+    locked: 0
+  - name: Water Background 1
+    uniqueID: 3229698705
+    locked: 0
+  - name: Water
+    uniqueID: 3305600477
+    locked: 0
+  - name: Ground
+    uniqueID: 3745890175
+    locked: 0
+  - name: Wall
+    uniqueID: 3775627203
+    locked: 0
+  - name: Decoration Back
+    uniqueID: 3512446965
+    locked: 0
+  - name: Character
+    uniqueID: 3542306135
+    locked: 0
+  - name: Decoration Front
+    uniqueID: 3786851115
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
