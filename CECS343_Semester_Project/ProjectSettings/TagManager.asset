@@ -74,6 +74,9 @@ TagManager:
   - name: Character
     uniqueID: 3542306135
     locked: 0
+  - name: Hidden Trap
+    uniqueID: 3008211271
+    locked: 0
   - name: Decoration Front
     uniqueID: 3786851115
     locked: 0
