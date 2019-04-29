@@ -6,7 +6,7 @@ using UnityEngine;
 public class Collectable : MonoBehaviour
 {
     // Uses the trigger variable of animator to destroy item
-    protected void TriggerCollect()
+    public void TriggerCollect()
     {
         gameObject.GetComponent<CircleCollider2D>().enabled = false;
         gameObject.GetComponent<Animator>().SetTrigger("collected");

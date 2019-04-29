@@ -12,9 +12,12 @@ public class PlayerController : MonoBehaviour
     // jumping variables
     bool grounded = false;
     float groundCheckRadius = 0.05f;
-    public LayerMask groundLayer; // The layer that would trigger groundCheck if player is on ground
-    public Transform groundCheck;
-    public float jumpHeight;
+    [SerializeField]
+    private LayerMask groundLayer; // The layer that would trigger groundCheck if player is on ground
+    [SerializeField]
+    private Transform groundCheck;
+    [SerializeField]
+    private float jumpHeight;
 
     // Body variables
     Rigidbody2D pRB;
@@ -97,5 +100,13 @@ public class PlayerController : MonoBehaviour
         move = Input.GetAxis("Horizontal"); // GetAxis would give float value going up to one or negative one.
         anim.SetFloat("speed", Mathf.Abs(move)); // "speed" is variable for Animator
         bodyVelocityUpdate(move * maxSpeed, pRB.velocity.y);
+    }
+
+    // Only shows radius of groundCheck on editor.
+    // Does nothing in game.
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(groundCheck.transform.position, groundCheckRadius);
     }
 }

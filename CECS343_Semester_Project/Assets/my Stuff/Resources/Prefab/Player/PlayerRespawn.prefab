@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2218008792478494415}
   - component: {fileID: 2218008792478494414}
   m_Layer: 0
-  m_Name: PlayerSpawn
+  m_Name: PlayerRespawn
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59e7d9084dd6a9d4fa1d0f028ea7c7a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 2218008792478494416}
 --- !u!114 &2218008792478494414
 MonoBehaviour:
   m_ObjectHideFlags: 0

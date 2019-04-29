@@ -8,5 +8,6 @@ public class LoadManager : Singleton<LoadManager>
     {
         Instantiate(Resources.Load("Prefab/Canvas/ItemCanvas", typeof(GameObject)));
         Instantiate(Resources.Load("Prefab/Canvas/PlayerHPCanvas", typeof(GameObject)));
+        Instantiate(Resources.Load("Prefab/Player/PlayerRespawn", typeof(GameObject)));
     }
 }

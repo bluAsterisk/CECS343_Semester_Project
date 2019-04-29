@@ -25,20 +25,10 @@ public class EnemyHealth : MonoBehaviour
     }
 
     // Triggers death for Animator Trigger
-    void TriggerDeath()
+    public void TriggerDeath()
     {
-        // Gathers all children of this gameObject level components and looks for tag that matches to disable collider
-        Collider2D[] children = gameObject.GetComponentsInChildren<Collider2D>();
-        if(children != null)
-        {
-            foreach (Collider2D child in children)
-            {
-                if(child.CompareTag("Enemy Attack"))
-                {
-                    child.enabled = false;
-                }
-            }
-        }
+        EnemyDamage children = gameObject.GetComponentInChildren<EnemyDamage>();
+        children.TurnOffAttack(); // Enemy can't retaliate when dead.
         gameObject.GetComponent<Animator>().SetTrigger("die");
     }
 

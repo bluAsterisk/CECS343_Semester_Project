@@ -1,26 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerRespawn : Singleton<PlayerRespawn>
 {
-    private Transform spawnPoint;
-    private void Start()
-    {
-        spawnPoint = transform;
-    }
+    // Respawns player by creating another one.
     public void RespawnPlayer()
     {
         // print("RespawnPlayer Start"); // To see Player respawn start
-        GameObject test = Instantiate(PlayerSingleton.Instance.GetPlayer(), spawnPoint.position, spawnPoint.rotation);
+        Instantiate(PlayerSingleton.Instance.GetPlayer(), transform.position, transform.rotation);
     }
-
-    public void MakeDead(GameObject player)
+    
+    // Sets the respawn point using this objects transform.
+    public void SetSpawnPoint(Transform point)
     {
-        // Probably have to put effect
-        Destroy(player);
-        RespawnPlayer();
+        transform.position = point.position;
+        transform.rotation = point.rotation; // Not needed in a 2D environment
     }
 }
 

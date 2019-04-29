@@ -7,13 +7,13 @@ public class TrapDamage : EnemyDamage
     // overrides method to allow attacking Enemies
     override protected void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             damageContinue = true;
             //print("damageContinue True");  //See if trigger true
             StartCoroutine("InvulnWearOff", other);
         }
-        else if (other.tag == "Enemy")
+        else if (other.CompareTag("Enemy"))
         {
             //print("Enemy Enters");
             other.gameObject.GetComponent<EnemyHealth>().AddDamage(damage);

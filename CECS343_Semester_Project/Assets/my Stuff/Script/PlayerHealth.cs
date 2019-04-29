@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     private float fullHealth;
     [SerializeField]
     private float currentHealth;
+
     // Health UI
     [SerializeField]
     private Slider healthSlider;
@@ -20,19 +21,17 @@ public class PlayerHealth : MonoBehaviour
     private float invulnerabilityTime;
     [SerializeField]
     private bool canDamage;
+
     // Animation field for player flashing when damaged
     private SpriteRenderer playerSprite;
     private Color newColor;
 
+    // Flashing of player
     [SerializeField] [Range(0f, 1f)]
     private float colorTransparency;
     [SerializeField] [Range(0f, 1f)]
     private float intervalFlashTime;
 
-    private void Awake()
-    {
-        
-    }
     // Start is called before the first frame update
     void Start()
     {
@@ -48,9 +47,9 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
-    // Adds damage to player
-    // When player has no more health; player dies
-    // Also changes slider
+    // Adds damage to player.
+    // When player has no more health; player dies.
+    // Also changes healthSlider.
     public void AddDamage(float damage)
     {
         if (canDamage)
@@ -59,12 +58,12 @@ public class PlayerHealth : MonoBehaviour
             {
                 return;
             }
-            gameObject.GetComponent<Animator>().SetTrigger("hurtTrigger");
+            gameObject.GetComponent<Animator>().SetTrigger("hurtTrigger"); // animator Set trigger for wound
             currentHealth -= damage;
             healthSlider.value = currentHealth;
             if (currentHealth <= 0)
             {
-                PlayerRespawn.Instance.MakeDead(gameObject);
+                TriggerDeath();
             }
             StartCoroutine("Invulnerability");
         }
@@ -95,15 +94,30 @@ public class PlayerHealth : MonoBehaviour
         }
         yield return null;
     }
-    
+
+    // Returns bool to see if Player can be damaged.
     public bool CanHurt()
     {
         return canDamage;
     }
 
+    // Assigns healther Slider from input
     public void SetSlider(Slider HPS)
     {
         healthSlider = HPS;
+    }
+
+    // Triggers Death even though it doesn't have any triggers to set
+    public void TriggerDeath()
+    {
+        DestroyPlayer();
+    }
+
+    // Destroys player and then respawns player
+    void DestroyPlayer()
+    {
+        Destroy(gameObject);
+        PlayerRespawn.Instance.RespawnPlayer();
     }
 }
 

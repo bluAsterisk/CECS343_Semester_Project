@@ -7,6 +7,7 @@ public class CameraFollowTarget : Singleton<CameraFollowTarget>
     // Camera pointing at target
     [SerializeField]
     private Transform target; // What camera is following
+    [SerializeField]
     private Vector3 targetCamPos; // Position of the camera following target
     [SerializeField]
     private float smoothing; // smooths camera following target
@@ -29,8 +30,8 @@ public class CameraFollowTarget : Singleton<CameraFollowTarget>
     [Header("Buffer Zone Values")]
     [SerializeField] private float bufferY;
     [SerializeField] private float bufferX;
-    // Holds half of height and width of camera.
 
+    // Holds half of height and width of camera.
     //[SerializeField]
     private float camWidthHalf, camHeightHalf;
     /*
@@ -44,8 +45,9 @@ public class CameraFollowTarget : Singleton<CameraFollowTarget>
     // Start is called before the first frame update
     void Start()
     {
-        targetCamPos = transform.position;
-
+        targetCamPos = transform.position; // Need it because the Z value is assigned.
+        bufferY *= target.localScale.y;
+        bufferX *= target.localScale.x;
         /*
          * Used to find edges for the camera that should
          * not show things outside of map.

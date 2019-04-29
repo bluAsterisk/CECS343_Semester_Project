@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerSingleton : Singleton<PlayerSingleton>
 {
+    // Hold Player; Used for player Respawn.
     [SerializeField]
     private GameObject player;
     

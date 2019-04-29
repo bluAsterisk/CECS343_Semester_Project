@@ -11,16 +11,18 @@ public class EnemyDamage : MonoBehaviour
     protected float pushBackForce;
     [SerializeField]
     protected bool damageContinue;
-
+    //[SerializeField]
+    protected bool canAttack;
     private void Start()
     {
         damageContinue = false;
+        canAttack = true;
     }
 
     protected virtual IEnumerator InvulnWearOff(Collider2D other)
     {
         // print("Character enter Coroutine"); // See if character started the Coroutine
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             while (damageContinue)
             {
@@ -38,21 +40,25 @@ public class EnemyDamage : MonoBehaviour
     {
         damageContinue = true;
         //print("damageContinue True");  //See if trigger true
-        StartCoroutine("InvulnWearOff", other);
+        if (canAttack) 
+            StartCoroutine("InvulnWearOff", other);
         
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         StopCoroutine("InvulnWearOff");
-        //StopAllCoroutines();
         damageContinue = false;
         //print("damageContinue False"); //See if trigger false
     }
 
     protected void PushBack(Transform pushedObject)
     {
-        //print(pushedObject.gameObject.GetComponent<Rigidbody2D>().velocity);
         pushedObject.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, pushBackForce);
+    }
+
+    public void TurnOffAttack()
+    {
+        canAttack = false;
     }
 }

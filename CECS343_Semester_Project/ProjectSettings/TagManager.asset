@@ -10,6 +10,8 @@ TagManager:
   - LeftPB
   - RightPB
   - UpperPB
+  - Spawn Point
+  - Enemy Attack
   layers:
   - Default
   - TransparentFX
@@ -40,7 +42,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Item
   - 
   - Platform
   m_SortingLayers:

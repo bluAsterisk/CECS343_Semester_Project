@@ -38,19 +38,17 @@ public class SetCameraBounds : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Enable gameObject
-        //gameObject.SetActive(true);
         // Getting BoxCollider2D height and width halves
-        // SizeBoxCollider * Vector2(gameObject.Scale) / 2; The scale is from transform and sets size of box collider.
+        // sizeHalf = SizeBoxCollider * Vector2(gameObject.Scale) / 2; The scale is from transform and sets size of box collider.
         sizeHalf = gameObject.GetComponent<BoxCollider2D>().size * gameObject.GetComponent<BoxCollider2D>().transform.localScale / 2;
 
         // Getting BoxCollider2D Center
-        // BoxCollider.Offset * Vector2(gameObject.Scale); The scale is from transform and sets size of box collider.
-        // i.e. Get Offset then multiply it by scale then go to center.
-        // The offset goes first then the size comes later when scale is not 1;
-        Vector2 boxOffset = gameObject.GetComponent<BoxCollider2D>().offset * gameObject.GetComponent<BoxCollider2D>().transform.localScale;
-        boxCenter = new Vector2(gameObject.GetComponent<BoxCollider2D>().transform.position.x + boxOffset.x,
-                                gameObject.GetComponent<BoxCollider2D>().transform.position.y + boxOffset.y);
+        // Offset use transform as relative point.
+        // The Offset goes first then the size comes later when scale is not 1;
+        // Then add in the transform of this gameObject to get center of Box.
+        // BoxCenter = transform + Box.Offset * transform.scale; to get borders of boxcollider on the scene.
+        Vector2 boxOffset = gameObject.GetComponent<BoxCollider2D>().offset * transform.localScale;
+        boxCenter = new Vector2(transform.position.x + boxOffset.x, transform.position.y + boxOffset.y);
 
         Transform[] points = gameObject.GetComponentsInChildren<Transform>();
         if (points != null)
@@ -58,7 +56,7 @@ public class SetCameraBounds : MonoBehaviour
             foreach (Transform bound in points)
             {
                 // The Bounds already have transform calculated by distance from object.transform and then multiplied by scale
-                // BoundPoint = (ChildTransform + ParentTransform) * scale
+                // BoundPoint = (ChildTransform + ParentTransform) * scale; already done by Unity
                 if (bound.CompareTag("LeftPB"))
                 {
                     leftPBound = bound.GetComponent<Transform>().position.x;
@@ -89,12 +87,12 @@ public class SetCameraBounds : MonoBehaviour
     // When player enters the box collider it will set the bounds for the camera based
     // on BoxCollider2D
     // What it inputs to the CameraFollowTarget is the box collider borders
-    // If it is false then use the points from PointBound i.e. upperPBound,...
+    // If it is false then use the points from PointBound i.e. upperPBound, etc...
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Player")
         {
-            if (upperBound)
+            if (upperBound) // Upper Bound
             {
                 CameraFollowTarget.Instance.SetUpperBound(boxCenter.y + sizeHalf.y);
             }
@@ -102,7 +100,8 @@ public class SetCameraBounds : MonoBehaviour
             {
                 CameraFollowTarget.Instance.SetUpperBound(upperPBound);
             }
-            if (lowerBound)
+
+            if (lowerBound) // Lower Bound
             {
                 CameraFollowTarget.Instance.SetLowerBound(boxCenter.y - sizeHalf.y);
             }
@@ -110,7 +109,8 @@ public class SetCameraBounds : MonoBehaviour
             {
                 CameraFollowTarget.Instance.SetLowerBound(lowerPBound);
             }
-            if (leftBound)
+
+            if (leftBound) // Left Bound
             {
                 CameraFollowTarget.Instance.SetLeftBound(boxCenter.x - sizeHalf.x);
             }
@@ -118,7 +118,8 @@ public class SetCameraBounds : MonoBehaviour
             {
                 CameraFollowTarget.Instance.SetLeftBound(leftPBound);
             }
-            if (rightBound)
+
+            if (rightBound) // Right Bound
             {
                 CameraFollowTarget.Instance.SetRightBound(boxCenter.x + sizeHalf.x);
             }

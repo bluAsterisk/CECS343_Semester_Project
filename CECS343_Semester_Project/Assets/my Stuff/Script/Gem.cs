@@ -5,7 +5,7 @@ using UnityEngine;
 public class Gem : Collectable
 {
     // When Player touches Item collect Item
-    public void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {

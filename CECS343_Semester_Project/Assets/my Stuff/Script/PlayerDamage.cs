@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class PlayerDamage : MonoBehaviour
 {
+    // Damage
     [SerializeField]
     private float damage;
-    private Rigidbody2D prb;
+    [SerializeField]
+    private float pushbackForce;
+    // Body
+    [SerializeField]
+    private Rigidbody2D pRB;
     private void Start()
     {
-        prb = gameObject.GetComponent<Rigidbody2D>();
+        pRB = gameObject.GetComponent<Rigidbody2D>();
     }
     
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Enemy" && prb.velocity.y < 0)
+        if (other.CompareTag("Enemy") && pRB.velocity.y < 0)
         {
             other.gameObject.GetComponent<EnemyHealth>().AddDamage(damage);
-            prb.velocity = new Vector2(0, 3);
+            pRB.velocity = new Vector2(0, pushbackForce); // Because the velocity is always updated in player Controller
         }
     }
 }

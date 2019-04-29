@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    // Just loads LoadManager
-    private void Awake()
+    // When player starts assign stuff.
+    private void Start()
     {
-        LoadManager test = LoadManager.Instance;
-        CameraFollowTarget.Instance.NewTarget(test.transform);
+        CameraFollowTarget.Instance.NewTarget(transform);
     }
 }
